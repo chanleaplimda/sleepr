@@ -19,6 +19,9 @@
     "enabled": true,
     "rules": {
       "preset": "recommended",
+      "complexity": {
+        "noStaticOnlyClass": "off"
+      },
       "style": {
         "useImportType": "off"
       }
