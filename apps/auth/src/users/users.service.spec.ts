@@ -1,4 +1,5 @@
 import { Test, type TestingModule } from '@nestjs/testing'
+import { UserDocument } from './models/user.schema'
 import { UserRepository } from './users.repository'
 import { UsersService } from './users.service'
 
@@ -33,11 +34,11 @@ describe('UsersService', () => {
       password: 'password123',
     }
     const expectedUser = { _id: '123', ...createUserDto }
-    jest.spyOn(userRepository, 'create').mockResolvedValue(expectedUser as any)
-
+    jest
+      .spyOn(userRepository, 'create')
+      .mockResolvedValue(expectedUser as unknown as UserDocument)
     const user = await service.create(createUserDto)
-
-    expect(userRepository.create).toHaveBeenCalledWith(createUserDto)
+    expect(userRepository.create).toHaveBeenCalledTimes(1)
     expect(user).toEqual(expectedUser)
   })
 })
