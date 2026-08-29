@@ -1,13 +1,13 @@
-import { LoggerModule } from '@app/common';
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { JwtModule } from '@nestjs/jwt';
-import * as Joi from 'joi';
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
-import { LocalStrategy } from './strategy/stategy.local';
-import { UsersModule } from './users/users.module';
-import { JwtStrategy } from './strategy/jwt.strategy';
+import { LoggerModule } from '@app/common'
+import { Module } from '@nestjs/common'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { JwtModule } from '@nestjs/jwt'
+import * as Joi from 'joi'
+import { AuthController } from './auth.controller'
+import { AuthService } from './auth.service'
+import { JwtStrategy } from './strategy/jwt.strategy'
+import { LocalStrategy } from './strategy/stategy.local'
+import { UsersModule } from './users/users.module'
 
 @Module({
   imports: [

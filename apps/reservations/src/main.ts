@@ -1,20 +1,23 @@
-import { ValidationPipe } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { NestFactory } from '@nestjs/core';
-import cookieParser from 'cookie-parser';
-import { Logger } from 'nestjs-pino';
-import { ReservationsModule } from './reservations.module';
+import { AllExceptionsFilter, ResponseInterceptor } from '@app/common'
+import { ValidationPipe } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { NestFactory, Reflector } from '@nestjs/core'
+import cookieParser from 'cookie-parser'
+import { Logger } from 'nestjs-pino'
+import { ReservationsModule } from './reservations.module'
 
 async function bootstrap() {
-  const app = await NestFactory.create(ReservationsModule);
+  const app = await NestFactory.create(ReservationsModule)
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
     }),
-  );
-  app.useLogger(app.get(Logger));
-  app.use(cookieParser());
-  const configService = app.get(ConfigService);
-  await app.listen(configService.getOrThrow<number>('PORT'));
+  )
+  app.useGlobalInterceptors(new ResponseInterceptor(app.get(Reflector)))
+  app.useGlobalFilters(new AllExceptionsFilter())
+  app.useLogger(app.get(Logger))
+  app.use(cookieParser())
+  const configService = app.get(ConfigService)
+  await app.listen(configService.getOrThrow<number>('PORT'))
 }
-void bootstrap();
+void bootstrap()

@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { PaymentController } from './payment.controller';
-import { PaymentService } from './payment.service';
-import { ConfigModule } from '@nestjs/config';
-import * as Joi from 'joi';
-import { LoggerModule } from '@app/common';
+import { LoggerModule } from '@app/common'
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import * as Joi from 'joi'
+import { PaymentController } from './payment.controller'
+import { PaymentService } from './payment.service'
 
 @Module({
   imports: [

@@ -1,11 +1,11 @@
-import { JwtAuthGuard } from '@app/common';
-import { Test, type TestingModule } from '@nestjs/testing';
-import { ReservationsController } from './reservations.controller';
-import { ReservationsService } from './reservations.service';
+import { JwtAuthGuard } from '@app/common'
+import { Test, type TestingModule } from '@nestjs/testing'
+import { ReservationsController } from './reservations.controller'
+import { ReservationsService } from './reservations.service'
 
 describe('ReservationsController', () => {
-  let controller: ReservationsController;
-  let _service: ReservationsService;
+  let controller: ReservationsController
+  let _service: ReservationsService
 
   const mockReservationsService = {
     create: jest.fn(),
@@ -13,7 +13,7 @@ describe('ReservationsController', () => {
     findOne: jest.fn(),
     update: jest.fn(),
     remove: jest.fn(),
-  };
+  }
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -27,13 +27,13 @@ describe('ReservationsController', () => {
     })
       .overrideGuard(JwtAuthGuard)
       .useValue({ canActivate: () => true })
-      .compile();
+      .compile()
 
-    controller = module.get<ReservationsController>(ReservationsController);
-    _service = module.get<ReservationsService>(ReservationsService);
-  });
+    controller = module.get<ReservationsController>(ReservationsController)
+    _service = module.get<ReservationsService>(ReservationsService)
+  })
 
   it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
-});
+    expect(controller).toBeDefined()
+  })
+})

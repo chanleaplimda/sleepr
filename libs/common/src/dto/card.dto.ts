@@ -1,18 +1,17 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator'
 
 export class CardDTO {
   @IsString()
   @IsNotEmpty()
-  cvc: string;
+  cvc: string
 
   @IsNumber()
-  exp_month: number;
+  exp_month: number
 
   @IsNumber()
-  exp_year: number;
+  exp_year: number
 
   @IsString()
   @IsNotEmpty()
-  number: string;
+  number: string
 }
-
