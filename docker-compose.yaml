@@ -25,6 +25,32 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+  payment:
+    build: 
+      context: .
+      dockerfile: ./apps/payment/Dockerfile
+      target: development
+    command: pnpm run start:dev payment
+    env_file:
+      - ./apps/payment/.env
+    ports:
+      - '3003:3003'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  notification:
+    build: 
+      context: .
+      dockerfile: ./apps/notification/Dockerfile
+      target: development
+    command: pnpm run start:dev notification
+    env_file:
+      - ./apps/notification/.env
+    ports:
+      - '3004:3004'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
   mongo:
     image: mongo
     ports:
