@@ -1,10 +1,10 @@
-import { PAYMENT_SERVICE } from '@app/common';
-import { Inject, Injectable } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
-import { map } from 'rxjs';
-import { ReservationRepository } from './reservation.repository';
-import { CreateReservationDto } from './reservations/dto/create-reservation.dto';
-import { UpdateReservationDto } from './reservations/dto/update-reservation.dto';
+import { PAYMENT_SERVICE } from '@app/common'
+import { Inject, Injectable } from '@nestjs/common'
+import { ClientProxy } from '@nestjs/microservices'
+import { map } from 'rxjs'
+import { ReservationRepository } from './reservation.repository'
+import { CreateReservationDto } from './reservations/dto/create-reservation.dto'
+import { UpdateReservationDto } from './reservations/dto/update-reservation.dto'
 
 @Injectable()
 export class ReservationsService {
@@ -23,23 +23,23 @@ export class ReservationsService {
             invoiceId: response.id,
             timestamp: new Date(),
             userId,
-          });
+          })
         }),
-      );
+      )
   }
   findAll() {
-    return this.reservationRepository.find({});
+    return this.reservationRepository.find({})
   }
   findOne(_id: string) {
-    return this.reservationRepository.findOne({ _id });
+    return this.reservationRepository.findOne({ _id })
   }
   update(_id: string, updateReservationDto: UpdateReservationDto) {
     return this.reservationRepository.findOneAndUpdate(
       { _id },
       updateReservationDto,
-    );
+    )
   }
   remove(_id: string) {
-    return this.reservationRepository.deleteOne({ _id });
+    return this.reservationRepository.deleteOne({ _id })
   }
 }

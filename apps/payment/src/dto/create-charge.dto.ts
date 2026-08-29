@@ -1,1 +1,1 @@
-export * from '@app/common/dto/create-charge.dto';
+export * from '@app/common/dto/create-charge.dto'
