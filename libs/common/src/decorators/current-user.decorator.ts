@@ -1,4 +1,4 @@
-import { UserDocument } from '@app/common/models/user.schema';
+import { UserDocument } from '@app/common';
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 
 function getCurrentUserByContext(context: ExecutionContext): UserDocument {
