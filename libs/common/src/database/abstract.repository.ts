@@ -42,20 +42,20 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     return this.model.find(filterQuery).lean(true)
   }
   async deleteOne(filterQuery: QueryFilter<TDocument>) {
-    const document = await this.model.deleteOne(filterQuery).lean(true)
-    if (!document) {
+    const result = await this.model.deleteOne(filterQuery)
+    if (result.deletedCount === 0) {
       this.logger.warn(`Document not found with QueryFilter`, filterQuery)
       throw new NotFoundException('Document was not found')
     }
-    return document
+    return result
   }
 
   async deleteMany(filterQuery: QueryFilter<TDocument>) {
-    const document = await this.model.deleteMany(filterQuery).lean(true)
-    if (!document) {
+    const result = await this.model.deleteMany(filterQuery)
+    if (result.deletedCount === 0) {
       this.logger.warn(`Document not found with QueryFilter`, filterQuery)
       throw new NotFoundException('Document was not found')
     }
-    return document
+    return result
   }
 }

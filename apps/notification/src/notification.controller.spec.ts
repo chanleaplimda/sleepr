@@ -8,7 +8,14 @@ describe('NotificationController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [NotificationController],
-      providers: [NotificationService],
+      providers: [
+        {
+          provide: NotificationService,
+          useValue: {
+            notifyEmail: jest.fn(),
+          },
+        },
+      ],
     }).compile()
 
     notificationController = app.get<NotificationController>(
@@ -17,8 +24,8 @@ describe('NotificationController', () => {
   })
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(notificationController.getHello()).toBe('Hello World!')
+    it('should be defined', () => {
+      expect(notificationController.notifyEmail).toBeDefined()
     })
   })
 })
