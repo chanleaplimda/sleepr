@@ -1,6 +1,5 @@
-import { CurrentUser, ResponseMessage } from '@app/common';
+import { CurrentUser, ResponseMessage, UserDocument } from '@app/common';
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { UserDocument } from '../../../../libs/common/src/models/user.schema';
 import { JwtAuthGuard } from '../guard/jwt-auth.guard';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UsersService } from './users.service';

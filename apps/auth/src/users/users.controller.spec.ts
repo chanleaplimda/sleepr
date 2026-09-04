@@ -1,5 +1,5 @@
+import { UserDocument } from '@app/common';
 import { Test, type TestingModule } from '@nestjs/testing';
-import { UserDocument } from '../../../../libs/common/src/models/user.schema';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 

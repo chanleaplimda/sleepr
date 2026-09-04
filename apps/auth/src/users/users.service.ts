@@ -1,3 +1,4 @@
+import { UserDocument } from '@app/common';
 import {
   Injectable,
   NotFoundException,
@@ -5,7 +6,6 @@ import {
   UnprocessableEntityException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
-import { UserDocument } from '../../../../libs/common/src/models/user.schema';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { GetUserDTO } from './dto/get-user.dto';
 import { UserRepository } from './users.repository';
