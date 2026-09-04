@@ -1,10 +1,9 @@
-import { SetMetadata } from '@nestjs/common';
+import { SetMetadata } from '@nestjs/common'
 
-export const RESPONSE_MESSAGE_KEY = 'response_message';
+export const RESPONSE_MESSAGE_KEY = 'response_message'
 export const ResponseMessage = (message: string) =>
-  SetMetadata(RESPONSE_MESSAGE_KEY, message);
+  SetMetadata(RESPONSE_MESSAGE_KEY, message)
 
-export const BYPASS_RESPONSE_TRANSFORM_KEY = 'bypass_response_transform';
+export const BYPASS_RESPONSE_TRANSFORM_KEY = 'bypass_response_transform'
 export const BypassResponseTransform = () =>
-  SetMetadata(BYPASS_RESPONSE_TRANSFORM_KEY, true);
-
+  SetMetadata(BYPASS_RESPONSE_TRANSFORM_KEY, true)

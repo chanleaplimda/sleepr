@@ -4,13 +4,16 @@ WORKDIR /usr/src/app
 
 COPY package.json ./
 COPY pnpm-lock.yaml ./
+COPY tsconfig.json ./
+COPY nest-cli.json ./
 
 RUN npm install -g pnpm@9
 RUN pnpm install --frozen-lockfile
 
-COPY . .
+COPY apps/reservations apps/reservations
+COPY libs libs
 
-RUN pnpm run build
+RUN pnpm run build reservations
 
 FROM node:alpine AS production
 
@@ -26,7 +29,5 @@ RUN npm install -g pnpm@9
 RUN pnpm install --prod --frozen-lockfile
 
 COPY --from=development /usr/src/app/dist ./dist
+
 CMD ["node", "dist/apps/reservations/main.js"]
-
-
-
