@@ -6,7 +6,7 @@ steps:
         '-t',
         'northamerica-northeast1-docker.pkg.dev/project-b8052276-494f-4d76-a76/reservations/production',
         '-f',
-        '/apps/reservations/Dockerfile',
+        'apps/reservations/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
@@ -23,7 +23,7 @@ steps:
         '-t',
         'northamerica-northeast1-docker.pkg.dev/project-b8052276-494f-4d76-a76/payment/production',
         '-f',
-        '/apps/payment/Dockerfile',
+        'apps/payment/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
@@ -40,7 +40,7 @@ steps:
         '-t',
         'northamerica-northeast1-docker.pkg.dev/project-b8052276-494f-4d76-a76/notification/production',
         '-f',
-        '/apps/notification/Dockerfile',
+        'apps/notification/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
@@ -57,7 +57,7 @@ steps:
         '-t',
         'northamerica-northeast1-docker.pkg.dev/project-b8052276-494f-4d76-a76/auth/production',
         '-f',
-        '/apps/auth/Dockerfile',
+        'apps/auth/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
