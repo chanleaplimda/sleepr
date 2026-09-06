@@ -67,3 +67,5 @@ steps:
         'push',
         'northamerica-northeast1-docker.pkg.dev/project-b8052276-494f-4d76-a76/auth/production',
       ]
+options:
+  logging: CLOUD_LOGGING_ONLY
