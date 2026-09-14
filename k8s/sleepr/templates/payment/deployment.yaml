@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: payment
+  name: payment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: payment
+    spec:
+      containers:
+      - image: northamerica-northeast1-docker.pkg.dev/project-b8052276-494f-4d76-a76/payment/production
+        name: payment
+        env:
+        - name: PORT
+          value: "3003"
+        - name: NOTIFICATION_HOST
+          value: notification
+        - name: NOTIFICATION_PORT
+          value: "3004" 
+        - name: STRIPE_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: stripe
+              key: secretKey
+        - name: STRIPE_PUBLISHABLE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: stripe
+              key: publishKey
+        ports:
+          - containerPort: 3003
