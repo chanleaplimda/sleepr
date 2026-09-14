@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: reservations
+  name: reservations
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reservations
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: reservations
+    spec:
+      containers:
+      - image: northamerica-northeast1-docker.pkg.dev/project-b8052276-494f-4d76-a76/reservations/production
+        name: reservations
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: mongodb
+              key: connectionString
+        - name: PORT
+          value: "3000"
+        - name: AUTH_HOST
+          value: auth-tcp
+        - name: AUTH_PORT
+          value: "3001"
+        - name: PAYMENT_HOST
+          value: payment
+        - name: PAYMENT_PORT
+          value: "3003"
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: secret
+              key: jwtSecret
+        - name: JWT_EXPIRATION_TIME
+          value: '3600'
+        ports:
+        - containerPort: 3000

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: auth
+  name: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+      - image: northamerica-northeast1-docker.pkg.dev/project-b8052276-494f-4d76-a76/auth/production
+        name: auth
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: mongodb
+              key: connectionString
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: secret
+              key: jwtSecret
+        - name: JWT_EXPIRATION_TIME
+          value: '3600'
+        - name: TCP_PORT
+          value: "3001"
+        - name: HTTP_PORT
+          value: "3002"
+        ports:
+        - containerPort: 3001
+        - containerPort: 3002
